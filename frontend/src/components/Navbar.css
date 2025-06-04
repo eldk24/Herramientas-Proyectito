@@ -1,0 +1,59 @@
+.navbar {
+  background-color: #16162c;
+  padding: 12px 24px;
+  color: white;
+  display: flex;
+  justify-content: center; /* centramos todo el contenido horizontalmente */
+  align-items: center;
+  box-shadow: 0 4px 8px rgb(22 22 44 / 0.5);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px; /* margen horizontal para separar los botones */
+  font-weight: 600;
+  font-size: 1rem;
+  position: relative;
+  padding: 4px 0;
+  transition: color 0.3s ease;
+}
+
+.navbar a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #f44336; /* rojo UTP */
+  transition: width 0.3s ease;
+}
+
+.navbar a:hover,
+.navbar a:focus {
+  color: #f44336;
+  outline: none;
+}
+
+.navbar a:hover::after,
+.navbar a:focus::after {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    padding: 12px 16px;
+  }
+  
+  .navbar a {
+    margin: 10px 0;
+  }
+}
+
