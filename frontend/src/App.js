@@ -11,6 +11,8 @@ import SearchPage from './pages/SearchPage';
 import CollectionsPage from './pages/CollectionsPage';
 import AdminPage from './pages/AdminPage';
 import PG from "./pages/PG"; // Página principal
+import DocentePage from './pages/DocentePage';
+import AlumnoPage from './pages/AlumnoPage';
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
         <Route path="/search" element={<SearchPage />} />
         <Route path="/collections" element={<CollectionsPage />} />
         <Route path="/admin" element={<AdminPage />} />
+        <Route path="/docente" element={<DocentePage />} />
+        <Route path="/alumno" element={<AlumnoPage />} />
       </Routes>
     </Router>
   );

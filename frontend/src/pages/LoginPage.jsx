@@ -15,22 +15,34 @@ const LoginPage = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
+  const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
 
-    const user = storedUsers.find(
-      user => user.email === formData.email && user.password === formData.password
-    );
+  const user = storedUsers.find(
+    user => user.email === formData.email && user.password === formData.password
+  );
 
-    if (user) {
-      alert(`¡Bienvenido, ${user.name}!`);
-      localStorage.setItem('currentUser', JSON.stringify(user));
+  if (user) {
+    alert(`¡Bienvenido, ${user.name}!`);
+    localStorage.setItem('currentUser', JSON.stringify(user));
+
+    // Redirección según el rol del usuario
+    if (user.role === 'admin') {
       navigate('/dashboard');
+    } else if (user.role === 'profesor') {
+      navigate('/docente');
+    } else if (user.role === 'estudiante') {
+      navigate('/alumno');
     } else {
-      alert('Email o contraseña incorrectos');
+      alert('Rol no reconocido');
     }
-  };
+
+  } else {
+    alert('Email o contraseña incorrectos');
+  }
+};
+
 
   return (
     <>
