@@ -14,6 +14,7 @@ const LoginPage = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+<<<<<<< HEAD
   const handleSubmit = (e) => {
   e.preventDefault();
 
@@ -43,6 +44,34 @@ const LoginPage = () => {
   }
 };
 
+=======
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+
+    try {
+      const res = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        return alert(data.error || 'Credenciales inválidas');
+      }
+
+      alert(`👋 ¡Bienvenido, ${data.user.name}!`);
+      localStorage.setItem('currentUser', JSON.stringify(data.user));
+      navigate('/dashboard'); // o la ruta que tengas configurada
+    } catch (err) {
+      alert('Error al iniciar sesión: ' + err.message);
+    }
+  };
+>>>>>>> ca0dafac6c7a2db4d1e457e07e98d5c0e9f35405
 
   return (
     <>

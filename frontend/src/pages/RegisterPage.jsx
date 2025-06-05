@@ -8,6 +8,7 @@ const RegisterPage = () => {
 
   const handleChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
+<<<<<<< HEAD
   const handleSubmit = e => {
     e.preventDefault();
     const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
@@ -18,6 +19,32 @@ const RegisterPage = () => {
     alert('Usuario registrado exitosamente');
     navigate('/login');
   };
+=======
+  const handleSubmit = async e => {
+  e.preventDefault(); // Asegúrate de prevenir el comportamiento por defecto del formulario
+  try {
+    const res = await fetch('http://localhost:5000/api/auth/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      return alert(data.error || 'Error al registrar');
+    }
+
+    alert('✅ Usuario registrado correctamente');
+    navigate('/login');
+  } catch (err) {
+    alert('Hubo un error: ' + err.message);
+  }
+};
+
+>>>>>>> ca0dafac6c7a2db4d1e457e07e98d5c0e9f35405
 
   return (
     <>

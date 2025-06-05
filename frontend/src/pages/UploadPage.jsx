@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 
@@ -20,10 +21,20 @@ const UploadPage = () => {
   const [description, setDescription] = useState('');
   const [career, setCareer] = useState('');
   const [course, setCourse] = useState('');
+=======
+import React, { useState } from 'react';
+import Navbar from '../components/Navbar';
+
+const UploadPage = () => {
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [category, setCategory] = useState('');
+  const [description, setDescription] = useState('');
+>>>>>>> ca0dafac6c7a2db4d1e457e07e98d5c0e9f35405
   const [uploadProgress, setUploadProgress] = useState(0);
   const [uploadError, setUploadError] = useState('');
   const [uploadSuccess, setUploadSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
+<<<<<<< HEAD
   const [uploadedFiles, setUploadedFiles] = useState([]);
 
   useEffect(() => {
@@ -55,10 +66,22 @@ const UploadPage = () => {
     setUploadError('');
     setUploadSuccess(false);
 
+=======
+
+  const resetForm = () => {
+    setSelectedFile(null);
+    setCategory('');
+    setDescription('');
+    setUploadProgress(0);
+  };
+
+  const handleUpload = async () => {
+>>>>>>> ca0dafac6c7a2db4d1e457e07e98d5c0e9f35405
     if (!selectedFile) {
       setUploadError('Por favor, selecciona un archivo.');
       return;
     }
+<<<<<<< HEAD
     if (!career) {
       setUploadError('Por favor, selecciona una carrera.');
       return;
@@ -68,6 +91,11 @@ const UploadPage = () => {
       return;
     }
 
+=======
+
+    setUploadError('');
+    setUploadSuccess(false);
+>>>>>>> ca0dafac6c7a2db4d1e457e07e98d5c0e9f35405
     setLoading(true);
 
     try {
@@ -76,6 +104,7 @@ const UploadPage = () => {
         setUploadProgress(i);
       }
 
+<<<<<<< HEAD
       const newFile = {
         id: Date.now().toString(),
         fileName: selectedFile.name,
@@ -86,6 +115,8 @@ const UploadPage = () => {
       };
 
       saveFileMetadata(newFile);
+=======
+>>>>>>> ca0dafac6c7a2db4d1e457e07e98d5c0e9f35405
       setUploadSuccess(true);
       resetForm();
     } catch (error) {
@@ -93,12 +124,25 @@ const UploadPage = () => {
       setUploadError('Hubo un error al subir el archivo. Inténtalo de nuevo.');
     } finally {
       setLoading(false);
+<<<<<<< HEAD
       setUploadProgress(0);
+=======
+>>>>>>> ca0dafac6c7a2db4d1e457e07e98d5c0e9f35405
     }
   };
 
   return (
+<<<<<<< HEAD
     <div style={{ backgroundColor: 'rgb(255, 178, 178)', minHeight: '100vh', color: '#fff' }}>
+=======
+    <div
+      style={{
+        backgroundColor: 'rgb(255, 178, 178)',
+        minHeight: '100vh',
+        color: '#fff',
+      }}
+    >
+>>>>>>> ca0dafac6c7a2db4d1e457e07e98d5c0e9f35405
       <Navbar />
       <div className="container py-5">
         <div
@@ -119,6 +163,7 @@ const UploadPage = () => {
               />
             </div>
 
+<<<<<<< HEAD
             {/* Carrera */}
             <div className="mb-3">
               <label className="form-label fw-semibold">Carrera</label>
@@ -147,6 +192,21 @@ const UploadPage = () => {
                 {career && coursesByCareer[career].map(curso => (
                   <option key={curso} value={curso}>{curso}</option>
                 ))}
+=======
+            {/* Categoría */}
+            <div className="mb-3">
+              <label className="form-label fw-semibold">Categoría</label>
+              <select
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                className="form-select"
+              >
+                <option value="">Seleccionar categoría</option>
+                <option value="matematicas">Matemáticas</option>
+                <option value="ciencias">Ciencias</option>
+                <option value="lenguaje">Lenguaje</option>
+                <option value="historia">Historia</option>
+>>>>>>> ca0dafac6c7a2db4d1e457e07e98d5c0e9f35405
               </select>
             </div>
 
@@ -165,7 +225,13 @@ const UploadPage = () => {
             <button
               onClick={handleUpload}
               disabled={!selectedFile || loading}
+<<<<<<< HEAD
               className={`btn w-100 fw-bold ${selectedFile && !loading ? 'btn-danger' : 'btn-secondary disabled'}`}
+=======
+              className={`btn w-100 fw-bold ${
+                selectedFile && !loading ? 'btn-danger' : 'btn-secondary disabled'
+              }`}
+>>>>>>> ca0dafac6c7a2db4d1e457e07e98d5c0e9f35405
             >
               {loading ? 'Subiendo...' : 'Subir Recurso'}
             </button>
@@ -188,6 +254,7 @@ const UploadPage = () => {
             )}
           </div>
         </div>
+<<<<<<< HEAD
 
         {/* Lista de archivos subidos */}
         <div
@@ -224,9 +291,16 @@ const UploadPage = () => {
             )}
           </div>
         </div>
+=======
+>>>>>>> ca0dafac6c7a2db4d1e457e07e98d5c0e9f35405
       </div>
     </div>
   );
 };
 
 export default UploadPage;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> ca0dafac6c7a2db4d1e457e07e98d5c0e9f35405

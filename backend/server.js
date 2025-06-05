@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+<<<<<<< HEAD
 const PORT = 3000;
 
 app.use(cors());
@@ -37,4 +38,20 @@ app.post('/api/auth/login', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
+=======
+const PORT = 5000; // Usa el mismo puerto que estás probando en Postman
+
+// Middlewares
+app.use(cors());
+app.use(express.json());
+
+// Rutas reales conectadas a MySQL
+const authRoutes = require('./routes/authRoutes');
+
+app.use('/api/auth', authRoutes);
+
+// Iniciar servidor
+app.listen(PORT, () => {
+  console.log(`✅ Servidor corriendo en http://localhost:${PORT}`);
+>>>>>>> ca0dafac6c7a2db4d1e457e07e98d5c0e9f35405
 });
