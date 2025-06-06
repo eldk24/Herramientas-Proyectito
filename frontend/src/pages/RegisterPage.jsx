@@ -8,43 +8,27 @@ const RegisterPage = () => {
 
   const handleChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-<<<<<<< HEAD
-  const handleSubmit = e => {
-    e.preventDefault();
-    const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
-    const emailExists = storedUsers.some(user => user.email === formData.email);
-    if (emailExists) return alert('El correo ya está registrado.');
-    storedUsers.push(formData);
-    localStorage.setItem('users', JSON.stringify(storedUsers));
-    alert('Usuario registrado exitosamente');
-    navigate('/login');
-  };
-=======
   const handleSubmit = async e => {
-  e.preventDefault(); // Asegúrate de prevenir el comportamiento por defecto del formulario
-  try {
-    const res = await fetch('http://localhost:5000/api/auth/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
+    e.preventDefault();
+    try {
+      const res = await fetch('http://localhost:5000/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (!res.ok) {
-      return alert(data.error || 'Error al registrar');
+      if (!res.ok) {
+        return alert(data.error || 'Error al registrar usuario');
+      }
+
+      alert('✅ Usuario registrado correctamente');
+      navigate('/login');
+    } catch (err) {
+      alert('Hubo un error: ' + err.message);
     }
-
-    alert('✅ Usuario registrado correctamente');
-    navigate('/login');
-  } catch (err) {
-    alert('Hubo un error: ' + err.message);
-  }
-};
-
->>>>>>> ca0dafac6c7a2db4d1e457e07e98d5c0e9f35405
+  };
 
   return (
     <>
@@ -80,8 +64,7 @@ const RegisterPage = () => {
           transform: translateX(-50%);
           font-size: 48px;
           font-weight: 900;
-          color:rgb(255, 125, 125);
-          color:rgb(255, 118, 118);
+          color: rgb(255, 118, 118);
           -webkit-text-stroke: 1px rgb(123, 0, 0);
           text-stroke: 1px white;
           letter-spacing: 5px;
@@ -209,7 +192,7 @@ const RegisterPage = () => {
           <button type="submit" aria-label="Registrarse">Registrarse</button>
 
           <div className="register-link">
-            <br></br>
+            <br />
             ¿Ya tienes cuenta?
             <button type="button" onClick={() => navigate('/login')} aria-label="Iniciar Sesión">
               Iniciar Sesión

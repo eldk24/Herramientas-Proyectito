@@ -14,64 +14,33 @@ const LoginPage = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-<<<<<<< HEAD
   const handleSubmit = (e) => {
-  e.preventDefault();
-
-  const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
-
-  const user = storedUsers.find(
-    user => user.email === formData.email && user.password === formData.password
-  );
-
-  if (user) {
-    alert(`¡Bienvenido, ${user.name}!`);
-    localStorage.setItem('currentUser', JSON.stringify(user));
-
-    // Redirección según el rol del usuario
-    if (user.role === 'admin') {
-      navigate('/dashboard');
-    } else if (user.role === 'profesor') {
-      navigate('/docente');
-    } else if (user.role === 'estudiante') {
-      navigate('/alumno');
-    } else {
-      alert('Rol no reconocido');
-    }
-
-  } else {
-    alert('Email o contraseña incorrectos');
-  }
-};
-
-=======
-  const handleSubmit = async (e) => {
-
     e.preventDefault();
 
-    try {
-      const res = await fetch('http://localhost:5000/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+    const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
 
-      const data = await res.json();
+    const user = storedUsers.find(
+      user => user.email === formData.email && user.password === formData.password
+    );
 
-      if (!res.ok) {
-        return alert(data.error || 'Credenciales inválidas');
+    if (user) {
+      alert(`¡Bienvenido, ${user.name}!`);
+      localStorage.setItem('currentUser', JSON.stringify(user));
+
+      // Redirección según el rol del usuario
+      if (user.role === 'admin') {
+        navigate('/dashboard');
+      } else if (user.role === 'profesor') {
+        navigate('/docente');
+      } else if (user.role === 'estudiante') {
+        navigate('/alumno');
+      } else {
+        alert('Rol no reconocido');
       }
-
-      alert(`👋 ¡Bienvenido, ${data.user.name}!`);
-      localStorage.setItem('currentUser', JSON.stringify(data.user));
-      navigate('/dashboard'); // o la ruta que tengas configurada
-    } catch (err) {
-      alert('Error al iniciar sesión: ' + err.message);
+    } else {
+      alert('Email o contraseña incorrectos');
     }
   };
->>>>>>> ca0dafac6c7a2db4d1e457e07e98d5c0e9f35405
 
   return (
     <>
@@ -107,8 +76,7 @@ const LoginPage = () => {
           transform: translateX(-50%);
           font-size: 48px;
           font-weight: 900;
-          color:rgb(255, 125, 125);
-          color:rgb(255, 118, 118);
+          color: rgb(255, 118, 118);
           -webkit-text-stroke: 1px rgb(123, 0, 0);
           text-stroke: 1px white;
           letter-spacing: 5px;
@@ -260,4 +228,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-
